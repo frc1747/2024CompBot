@@ -1,17 +1,16 @@
 package frc.robot.commands.Teleop;
 
-import frc.robot.Constants;
-import frc.robot.subsystems.Drivetrain;
-
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
-import edu.wpi.first.math.MathUtil;
+import frc.robot.Constants;
+import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class TeleopSwerve extends Command {    
-    private Drivetrain drivetrain;    
+public class TeleopSwerve extends Command {
+    private Drivetrain drivetrain;
     private DoubleSupplier translationSup;
     private DoubleSupplier strafeSup;
     private DoubleSupplier rotationSup;
@@ -29,16 +28,16 @@ public class TeleopSwerve extends Command {
 
     @Override
     public void execute() {
-        // Get Values, Deadband
+        // Get values, Deadband
         double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), Constants.ControllerConstants.STICK_DEADBAND);
         double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), Constants.ControllerConstants.STICK_DEADBAND);
         double rotationVal = MathUtil.applyDeadband(rotationSup.getAsDouble(), Constants.ControllerConstants.STICK_DEADBAND);
 
         // Drive
         drivetrain.drive(
-            new Translation2d(translationVal, strafeVal).times(Constants.DrivetrainConstants.MAX_SPEED), 
-            rotationVal * Constants.DrivetrainConstants.maxAngularVelocity, 
-            !robotCentricSup.getAsBoolean(), 
+            new Translation2d(translationVal, strafeVal).times(Constants.DrivetrainConstants.MAX_SPEED),
+            rotationVal * Constants.DrivetrainConstants.maxAngularVelocity,
+            !robotCentricSup.getAsBoolean(),
             true
         );
     }

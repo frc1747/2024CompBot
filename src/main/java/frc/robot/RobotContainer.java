@@ -4,17 +4,15 @@
 
 package frc.robot;
 
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
+// import frc.robot.commands.Autos;
 import frc.robot.commands.Teleop.TeleopSwerve;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj2.command.Command;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,66 +21,61 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  public static CTREConfigs ctreConfigs = new CTREConfigs();
+    // The robot's subsystems and commands are defined here...
+    public static CTREConfigs ctreConfigs = new CTREConfigs();
+    public final Drivetrain drivetrain = new Drivetrain();
 
-  public final Drivetrain drivetrain = new Drivetrain();
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+    // Controllers
+    private final Joystick driver = new Joystick(0);
+    // private final Joystick operator = new Joystick(1);
 
+    // Drive Controls
+    private final int translationAxis = XboxController.Axis.kLeftY.value;
+    private final int strafeAxis = XboxController.Axis.kLeftX.value;
+    private final int rotationAxis = XboxController.Axis.kRightX.value;
 
-  // Controllers
-  private final Joystick driver = new Joystick(0);
-  private final Joystick operator = new Joystick(1);
+    // Driver Buttons
+    // private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
+    private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
-  // Drive Controls
-  private final int translationAxis = XboxController.Axis.kLeftY.value;
-  private final int strafeAxis = XboxController.Axis.kLeftX.value;
-  private final int rotationAxis = XboxController.Axis.kRightX.value;
+    // The container for the robot. Contains subsystems, OI devices, and commands.
+    public RobotContainer() {
+        drivetrain.setDefaultCommand(
+            new TeleopSwerve(
+                drivetrain,
+                () -> -driver.getRawAxis(translationAxis),
+                () -> -driver.getRawAxis(strafeAxis),
+                () -> -driver.getRawAxis(rotationAxis),
+                () -> robotCentric.getAsBoolean()
+            )
+        );
 
-  // Driver Buttons
-  private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-  private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-  private final JoystickButton driver_stowButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
-  private final JoystickButton driver_AutoBalance = new JoystickButton(driver, XboxController.Button.kB.value);
+        //Configure the trigger bindings
+        configureBindings();
+    }
 
-  // The container for the robot. Contains subsystems, OI devices, and commands.
-  public RobotContainer() {
-    drivetrain.setDefaultCommand(
-      new TeleopSwerve(
-        drivetrain, 
-        () -> -driver.getRawAxis(translationAxis), 
-        () -> -driver.getRawAxis(strafeAxis), 
-        () -> -driver.getRawAxis(rotationAxis), 
-        () -> robotCentric.getAsBoolean()
-      )
-    );
+    /**
+     * Use this method to define your trigger->command mappings. Triggers can be created via the
+     * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
+     * predicate, or via the named factories in {@link
+     * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
+     * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
+     * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
+     * joysticks}.
+     */
+    private void configureBindings() {
+        // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+        //new Trigger(m_exampleSubsystem::exampleCondition)
+        //    .onTrue(new ExampleCommand(m_exampleSubsystem));
+    }
 
-    // Configure the trigger bindings
-    configureBindings();
-  }
-
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
-  private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
-  }
-
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
-  }
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        // An example command will be run in autonomous
+        return null; // Autos.exampleAuto(m_exampleSubsystem);
+    }
 }
