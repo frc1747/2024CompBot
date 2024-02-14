@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-// import frc.robot.commands.Autos;
+import frc.robot.commands.Autos;
 import frc.robot.commands.Teleop.TeleopSwerve;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
@@ -35,7 +35,6 @@ public class RobotContainer {
     private final int rotationAxis = XboxController.Axis.kRightX.value;
 
     // Driver Buttons
-    // private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
     // The container for the robot. Contains subsystems, OI devices, and commands.
