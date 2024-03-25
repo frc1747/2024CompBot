@@ -218,13 +218,13 @@ public class RobotContainer {
     new JoystickButton(operator, XboxController.Button.kA.value)
      .whileTrue(new Shoot(shooter , 1));
     new JoystickButton(operator, XboxController.Button.kB.value)
-     .whileTrue(new Shoot(shooter , -1 ));
+     .whileTrue(new Shoot(shooter, -1));
     new JoystickButton(operator, XboxController.Button.kX.value)
      .whileTrue(new ShooterFeed(feeder, intake, 1));
     new JoystickButton(operator, XboxController.Button.kY.value)
       .whileTrue(new ShooterFeed(feeder, intake, -1));
     
-    operatorDpadUp.whileTrue(new PodiumShooterPreset(pShooter));
+    operatorDpadUp.whileTrue(new ShooterPivotPreset(pShooter, Constants.ShooterConstants.PODIUM));
     operatorDpadLeft.whileTrue(new ShooterPivotPreset(pShooter, 0.0));
     operatorDpadRight.whileTrue(new ShooterPivotPreset(pShooter, Constants.ShooterConstants.UP_LIMIT));
     

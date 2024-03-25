@@ -27,6 +27,7 @@ public class PivotShooter extends SubsystemBase {
     configPID();
   }
 
+  // may have to adjust pidf values
   public void configPID() {
     double[] pidf = new double[] {0.40, 0, 0, 0};
     hinge.config_kP(0, pidf[0]);
@@ -48,6 +49,10 @@ public class PivotShooter extends SubsystemBase {
 
   public void alignShooterSpeaker() {
     hinge.set(ControlMode.Position, 10.0);
+  }
+
+  public void goTo(double encoderPosition) {
+    hinge.set(ControlMode.Position, encoderPosition);
   }
 
   public void alignShooterAmp() {
