@@ -69,7 +69,7 @@ public final class Constants {
     public static final double PODIUM = 85000;
 
     public static final double SHOOT_SPEED = -1.00;
-    public static final double HINGE_SPEED = 0.90;
+    public static final double HINGE_SPEED = 0.9;
 
     public static final double DOWN_LIMIT = STOWED;
     public static final double UP_LIMIT = 100000*4;

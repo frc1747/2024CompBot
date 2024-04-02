@@ -402,6 +402,7 @@ public class Drivetrain extends SubsystemBase {
       double lowerBound;
       double upperBound;
       double lowerOffset = scopeReference % 360;
+      // scopeReference = scopeReference % 360;
       if (lowerOffset >= 0) {
         lowerBound = scopeReference - lowerOffset;
         upperBound = scopeReference + (360 - lowerOffset);
