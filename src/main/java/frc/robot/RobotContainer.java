@@ -217,7 +217,7 @@ public class RobotContainer {
     new JoystickButton(operator, XboxController.Button.kB.value)
      .whileTrue(new Shoot(shooter , -1 ));
     new JoystickButton(operator, XboxController.Button.kX.value)
-     .whileTrue(new ShooterFeed(feeder, intake, 1));
+     .whileTrue(new ShooterFeed(feeder, intake, pShooter, pIntake, 1));
     new JoystickButton(operator, XboxController.Button.kY.value)
       .onTrue(new AdjustNote(feeder, intake));
     
