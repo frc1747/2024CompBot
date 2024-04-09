@@ -161,7 +161,7 @@ public class RobotContainer {
 
 
     // Braden's remode sick day code UNTESTED
-    NamedCommands.registerCommand("Floor pick up", new FloorPickup(intake, pIntake));
+    NamedCommands.registerCommand("Floor pick up", new IntakeAutos(intake, pIntake));
     NamedCommands.registerCommand("stow", new StowIntake(intake, pIntake));
 // imports needed 
     NamedCommands.registerCommand("shoot", new ShootAuto(shooter, intake,feeder , "shoot"));

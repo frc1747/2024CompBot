@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.1617787572237042,
-      "y": 5.59
+      "x": 1.3842846515935527,
+      "y": 5.550936522700434
     },
     "rotation": 0
   },
@@ -52,12 +52,6 @@
           "type": "named",
           "data": {
             "name": "shoot"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "2p (3)"
           }
         }
       ]
