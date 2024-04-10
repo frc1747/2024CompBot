@@ -2,45 +2,74 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.6431097477579587,
-      "y": 6.541783083566167
+      "x": 0.8108477755417065,
+      "y": 6.7095211113499165
     },
-    "rotation": 60.461217740441995
+    "rotation": 60.94539590092286
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "parallel",
+          "type": "named",
+          "data": {
+            "name": "shoot"
+          }
+        },
+        {
+          "type": "race",
           "data": {
             "commands": [
               {
                 "type": "named",
                 "data": {
-                  "name": "shoot"
+                  "name": "Floor pick up"
                 }
               },
               {
-                "type": "sequential",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 1.5
-                      }
-                    },
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "left side back (blue)"
-                      }
-                    }
-                  ]
+                  "pathName": "Amp side 1"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": " Amp side 2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Amp side 3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Floor pick up"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Amp side 4"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shoot"
           }
         }
       ]
