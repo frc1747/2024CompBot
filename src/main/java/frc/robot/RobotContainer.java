@@ -160,10 +160,14 @@ public class RobotContainer {
       new Shooterarm(pShooter, shooterarm , arm_zero ));
 
 
-    // Braden's remode sick day code UNTESTED
+    
     NamedCommands.registerCommand("Floor pick up", new IntakeAutos(intake, pIntake));
     NamedCommands.registerCommand("stow", new StowIntake(intake, pIntake));
 // imports needed 
+    NamedCommands.registerCommand("zero shooter", new ShooterPivotPreset(pShooter,0));
+    NamedCommands.registerCommand("angle shooter towards speaker from podium", new ShooterPivotPreset(pShooter,Constants.ShooterConstants.PODIUM));
+    NamedCommands.registerCommand("angle shooter to amp", new ShooterPivotPreset(pShooter,Constants.ShooterConstants.AMP));
+
     NamedCommands.registerCommand("shoot", new ShootAuto(shooter, intake,feeder , "shoot"));
 
     
