@@ -41,22 +41,16 @@ public class ShooterFeed extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    System.err.println(shooterPivot.getPosition());
-    // The polarity of the limit switch seems to be inverted, causing this logic
-    // to read incorrectly. Need to troubleshoot further. --CSS
-    if (shooterPivot.getPosition() > 250 || shooterPivot.switchPressed()) {
-      intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
+    // If the shooter pivot angle is less than or equal to 250 OR the
+    // shooter pivot limit switch is pressed, run the intake roller normally  
+    // to feed the note ELSE DO NOT run the intake roller.
+    if (shooterPivot.getPosition() <= 250 || shooterPivot.switchPressed()) {
+      if (intakePivot.getPosition() <= 250 || intakePivot.switchPressed()) {
+        intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
+      }
     } else {
-        intake.setRollerPower(0.0);
+      intake.setRollerPower(0.0);
     }
-
-    // if (!(shooterPivot.getPosition() <= 250 || shooterPivot.switchPressed())) {
-    //   if (!(intakePivot.getPosition() <= 250 || intakePivot.switchPressed())) {
-    //     intake.setRollerPower(0.0);
-    //     return;
-    //   }
-    // }
   }
 
   // Called once the command ends or is interrupted.
