@@ -41,13 +41,22 @@ public class ShooterFeed extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!(shooterPivot.getPosition() <= 250 || shooterPivot.switchPressed())) {
-      if (!(intakePivot.getPosition() <= 250 || intakePivot.switchPressed())) {
+
+    System.err.println(shooterPivot.getPosition());
+    // The polarity of the limit switch seems to be inverted, causing this logic
+    // to read incorrectly. Need to troubleshoot further. --CSS
+    if (shooterPivot.getPosition() > 250 || shooterPivot.switchPressed()) {
+      intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
+    } else {
         intake.setRollerPower(0.0);
-        return;
-      }
     }
-    intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
+
+    // if (!(shooterPivot.getPosition() <= 250 || shooterPivot.switchPressed())) {
+    //   if (!(intakePivot.getPosition() <= 250 || intakePivot.switchPressed())) {
+    //     intake.setRollerPower(0.0);
+    //     return;
+    //   }
+    // }
   }
 
   // Called once the command ends or is interrupted.
