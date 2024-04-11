@@ -41,16 +41,26 @@ public class ShooterFeed extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // If the shooter pivot angle is less than or equal to 250 OR the
-    // shooter pivot limit switch is pressed, run the intake roller normally  
-    // to feed the note ELSE DO NOT run the intake roller.
-    if (shooterPivot.getPosition() <= 250 || shooterPivot.switchPressed()) {
-      if (intakePivot.getPosition() <= 250 || intakePivot.switchPressed()) {
-        intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
-      }
-    } else {
-      intake.setRollerPower(0.0);
+
+    // Our assumed state would be to advance the note to the shooter. Setting
+    // the rollerPower to the calculated value accomplishes that.
+    double rollerPower = -Constants.FeederConstants.TRANSITION_SPEED * flip;
+
+    // Challenge the assumed state with conditions that would preclude us
+    // from wanting to advance the note to the shooter. Here that is:
+    // If the shooter pivot position is greater than 250 or shooter pivot switch is NOT pressed
+    //  ---OR---
+    // If the intake pivot position is greater than 250 or intake pivot switch is NOT pressed
+    // If either of these are TRUE, conditions are not favorable to advance the note
+    // and we need to change our rollerPower to 0
+    if ((shooterPivot.getPosition() > 250 || ! shooterPivot.switchPressed()) ||
+      (intakePivot.getPosition() > 250 || ! intakePivot.switchPressed())) {
+      rollerPower = 0;
     }
+
+    // Set the actual Roller Power based on the current state of rollerPower
+    intake.setRollerPower(rollerPower);
+
   }
 
   // Called once the command ends or is interrupted.
