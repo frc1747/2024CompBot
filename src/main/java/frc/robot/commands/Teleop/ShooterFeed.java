@@ -34,8 +34,8 @@ public class ShooterFeed extends Command {
   @Override
   public void initialize() {
     // Braden wants this way flip is used to change the shooter feed
-    intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
-    feeder.setShooterFeedPower(Constants.FeederConstants.TRANSITION_SPEED * flip);
+    //intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
+    //feeder.setShooterFeedPower(Constants.FeederConstants.TRANSITION_SPEED * flip);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -47,13 +47,15 @@ public class ShooterFeed extends Command {
     if (shooterPivot.getPosition() <= 250 || shooterPivot.switchPressed()) {
       if (intakePivot.getPosition() <= 250 || intakePivot.switchPressed()) {
         intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
+      } else {
+        intake.setRollerPower(0.0);
       }
     } else {
       intake.setRollerPower(0.0);
     }
   }
 
-  // Called once the command ends or is interrupted.
+  // Called once the command end+s or is interrupted.
   @Override
   public void end(boolean interrupted) {
     intake.setRollerPower(0.0);
