@@ -27,7 +27,7 @@ public class ShooterFeed extends Command {
     this.shooterPivot = shooterPivot;
     this.intakePivot = intakePivot;
     this.flip = flip;
-    addRequirements(feeder, intake);
+    addRequirements(feeder, intake,intakePivot);
   }
 
   // Called when the command is initially scheduled.
