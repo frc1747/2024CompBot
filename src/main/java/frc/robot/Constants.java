@@ -212,7 +212,7 @@ public final class Constants {
   public static class AutoConstants {
     public static final HolonomicPathFollowerConfig pathFollowerConfig = 
       new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-        new PIDConstants(1.5, 0.0, 0.0), // Translation PID constants
+        new PIDConstants(3.0, 0.0, 0.0), // Translation PID constants
         new PIDConstants(1, 0.0, 0.01), // Rotation PID constants
         4.5, // Max module speed, in m/s
         Constants.DrivetrainConstants.CENTER_TO_WHEEL, //Math.sqrt(2)*Units.inchesToMeters(11.25), // Drive base radius in meters. Distance from robot center to furthest module.

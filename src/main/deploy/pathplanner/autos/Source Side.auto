@@ -37,12 +37,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "stow"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "Source side 2"
@@ -70,12 +64,6 @@
           "type": "path",
           "data": {
             "pathName": "Source Side (4)"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "stow"
           }
         },
         {
