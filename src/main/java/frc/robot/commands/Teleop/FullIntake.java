@@ -16,7 +16,7 @@ import frc.robot.subsystems.Shooter;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class FullIntake extends SequentialCommandGroup {
   /** Creates a new FullIntake. */
-  public FullIntake(Intake intake, PivotIntake pivotIntake, Feeder feeder, Shooter shooter) {
+  public FullIntake(Intake intake, PivotIntake pivotIntake, Feeder feeder) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new FloorPickup(intake, pivotIntake));

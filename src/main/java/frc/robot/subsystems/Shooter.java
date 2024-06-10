@@ -14,10 +14,12 @@ import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   private TalonFX shooting;
+  private int id;
 
   /** Creates a new Shooter. */
-  public Shooter() {
-    shooting = new TalonFX(Constants.ShooterConstants.FRONT);
+  public Shooter(int id) {
+    this.id = id ;
+    shooting = new TalonFX(id);
     shooting.setNeutralMode(NeutralMode.Brake);
   }
 

@@ -16,17 +16,19 @@ import frc.robot.subsystems.Shooter;
 
 public class ShootAuto extends InstantCommand {
   /** Creates a new Intake. */
-  Shooter shoot;
+  Shooter lshoot;
+  Shooter rshoot;
   Intake pIntake;
   Feeder pfeeder;
   boolean done = false;
 
   
   String type;
-  public ShootAuto(Shooter pIntake,Intake pIntake2,  Feeder feedelliot , String type  ) {
+  public ShootAuto(Shooter Sleft, Shooter Sright,Intake pIntake2,  Feeder feedelliot , String type  ) {
 
   
-    this.shoot = pIntake;
+    this.rshoot = Sright;
+    this.lshoot = Sleft;
     this.pIntake = pIntake2;
     this.type = type;
     this.pfeeder = feedelliot;
@@ -42,7 +44,8 @@ public class ShootAuto extends InstantCommand {
   public void initialize() {
 
     if (type.equals("shoot" )) {
-      shoot.setShooterPower(-.80); 
+      rshoot.setShooterPower(-.80); 
+      lshoot.setShooterPower(.80);
       Timer.delay(.5);
       pIntake.setRollerPower(-.8);
       pfeeder.setShooterFeedPower(1);
@@ -52,7 +55,8 @@ public class ShootAuto extends InstantCommand {
         // TODO Auto-generated catch block
         e.printStackTrace();
       }
-      shoot.setShooterPower(0); 
+      rshoot.setShooterPower(0);
+      lshoot.setShooterPower(0);
       pIntake.setRollerPower(0);
       pfeeder.setShooterFeedPower(0);
     }
@@ -70,7 +74,8 @@ public class ShootAuto extends InstantCommand {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shoot.setShooterPower(0); 
+    rshoot.setShooterPower(0);
+    lshoot.setShooterPower(0); 
     pIntake.setRollerPower(0);
     pfeeder.setShooterFeedPower(0);
   }
