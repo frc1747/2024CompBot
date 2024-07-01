@@ -42,11 +42,11 @@ public final class Constants {
     public static final double DROPPED = 65000; // was 64000
     public static final double CLEAN = 28000;
 
-    public static final double IN_SPEED = 1.00;
-    public static final double OUT_SPEED = -0.75;// was 75 pully change
+    public static final double IN_SPEED = 0.3; // was 1.00
+    public static final double OUT_SPEED = -0.4; // was -0.75
 
-    public static final double ROLLER_SPEED = 0.9; // was .75
-    public static final double ROLLER_SPEED_CLEAN = 0.85;
+    public static final double ROLLER_SPEED = 0.25; // was .9
+    public static final double ROLLER_SPEED_CLEAN = 0.85; 
     public static final double PIVOT_IN_SPEED = 0.35;
     public static final double PIVOT_OUT_SPEED = 0.50;
     public static final double IN_SLOW_FACTOR = 0.50;
