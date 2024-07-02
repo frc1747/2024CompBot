@@ -29,31 +29,14 @@ public class CleanIntake extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    isReversed = false;
-    if (intakePivot.getPosition() < Constants.IntakeConstants.CLEAN) {
-      intakePivot.setHingePower(Constants.IntakeConstants.PIVOT_IN_SPEED);
-    } else {
-      isReversed = true;
-      intakePivot.setHingePower(-Constants.IntakeConstants.PIVOT_IN_SPEED);
-    }
+    intakePivot.goToClean();
+    intake.setRollerPower(-Constants.IntakeConstants.ROLLER_SPEED_CLEAN);
   }
 
   // can be improved tolerance with PID
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    if (isReversed) {
-      if (intakePivot.getPosition() < Constants.IntakeConstants.CLEAN) {
-        intakePivot.setHingePower(0);
-        intake.setRollerPower(-Constants.IntakeConstants.ROLLER_SPEED_CLEAN);
-      }
-    } else {
-      if (intakePivot.getPosition() > Constants.IntakeConstants.CLEAN) {
-        intakePivot.setHingePower(0);
-        intake.setRollerPower(-Constants.IntakeConstants.ROLLER_SPEED_CLEAN);
-      }
-    }
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
