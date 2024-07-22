@@ -50,6 +50,10 @@ public class PivotIntake extends SubsystemBase {
   public void dropIntake() {
     hinge.set(ControlMode.Position, Constants.IntakeConstants.DROPPED);
   }
+  
+  public void goToClean() {
+    hinge.set(ControlMode.Position, Constants.IntakeConstants.CLEAN);
+  }
 
   public void setEncoderPos(double position) {
     hinge.setSelectedSensorPosition(position);
