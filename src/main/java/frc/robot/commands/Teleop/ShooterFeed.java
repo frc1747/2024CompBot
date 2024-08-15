@@ -4,17 +4,29 @@
 
 package frc.robot.commands.Teleop;
 
+import java.util.Map;
+
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
-import frc.robot.Constants;
 
 public class ShooterFeed extends Command {
+  private static final String ShooterFeed = null;
   private Feeder feeder;
   private Intake intake;
   private int flip;
+
+ public GenericEntry shooterspeed = Shuffleboard.getTab("Shooter")
+    .add("Max Speed", .7)
+    .withWidget(BuiltInWidgets.kNumberSlider)
+    .withProperties(Map.of("min", 0, "max", .7))
+    .getEntry();  
+
   
   /** Creates a new ShooterFeed. */
   public ShooterFeed(Feeder feeder, Intake intake,int flip) {
@@ -34,6 +46,10 @@ public class ShooterFeed extends Command {
     // Braden wants this way flip is used to change the shooter feed
     intake.setRollerPower(-Constants.FeederConstants.TRANSITION_SPEED * flip);
     feeder.setShooterFeedPower(Constants.FeederConstants.TRANSITION_SPEED * flip);
+
+    double max = ShooterFeed.shooterSpeed.getDouble(0.7);
+    System.out.println(max);
+    ShooterFeed.setLauncherPower(controller.getRightTriggerAxis() * max);
   }
 
   // Called once the command ends or is interrupted.
