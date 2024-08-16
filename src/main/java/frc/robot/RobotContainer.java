@@ -222,6 +222,7 @@ public class RobotContainer {
       .onTrue(new AdjustNote(feeder, intake));
     
     operatorDpadUp.onTrue(new ShooterPivotPreset(pShooter, Constants.ShooterConstants.PODIUM));
+    operatorDpadDown.onTrue(new ShooterPivotPreset(pShooter, Constants.ShooterConstants.LOWER));
     operatorDpadLeft.onTrue(new ShooterPivotPreset(pShooter, 0.0));
     operatorDpadRight.onTrue(new ShooterPivotPreset(pShooter, Constants.ShooterConstants.UP_LIMIT));
     

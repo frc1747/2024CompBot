@@ -69,6 +69,7 @@ public final class Constants {
     public static final double STOWED = 0;
     public static final double AMP = 97500*4;
     public static final double PODIUM = 68000;
+    public static final double LOWER = 48000;
 
     public static final double SHOOT_SPEED = 0.85;
     public static final double HINGE_SPEED = 1;
