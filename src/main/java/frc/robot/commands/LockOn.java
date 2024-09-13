@@ -76,6 +76,7 @@ public class LockOn extends Command {
 
     // possibly use PID here eventually
     if (index != -1) {
+      System.out.println(index);
       rotation = 0.0;
       
       double yaw = vision.getYaw(index);

@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.commands.AdjustNote;
 import frc.robot.commands.Autos;
+import frc.robot.commands.LockOn;
 import frc.robot.commands.Teleop.CleanIntake;
 import frc.robot.commands.Teleop.BringIn;
 import frc.robot.commands.Teleop.Climb;
@@ -40,6 +41,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.PivotIntake;
 import frc.robot.subsystems.PivotShooter;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Vision;
 
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
@@ -77,6 +79,8 @@ public class RobotContainer {
   public final Climber leftClimber = new Climber(Constants.ClimberConstants.LEFT, "Left", true);
   public final Climber rightClimber = new Climber(Constants.ClimberConstants.RIGHT, "Right", false);
   public final Feeder feeder = new Feeder();
+
+  public final Vision vision = new Vision("Arducam_OV9281_USB_Camera");
 
   // Braden failing to code
 
@@ -220,6 +224,9 @@ public class RobotContainer {
      .whileTrue(new ShooterFeed(feeder, intake, 1));
     new JoystickButton(operator, XboxController.Button.kY.value)
       .onTrue(new AdjustNote(feeder, intake));
+
+    new JoystickButton(driver, XboxController.Button.kLeftBumper.value)
+      .onTrue(new LockOn(drivetrain, vision, operator));
     
     operatorDpadUp.onTrue(new ShooterPivotPreset(pShooter, Constants.ShooterConstants.PODIUM));
     operatorDpadLeft.onTrue(new ShooterPivotPreset(pShooter, 0.0));
