@@ -28,7 +28,7 @@ public class PivotShooter extends SubsystemBase {
   }
 
   public void configPID() {
-    double[] pidf = new double[] {0.40, 0, 0, 0};
+    double[] pidf = new double[] {2, 0, 0, 0}; // was .40 18/4/2024
     hinge.config_kP(0, pidf[0]);
     hinge.config_kI(0, pidf[1]);
     hinge.config_kD(0, pidf[2]);

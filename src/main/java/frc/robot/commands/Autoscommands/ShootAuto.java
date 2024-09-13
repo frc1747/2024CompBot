@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.Constants;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.PivotIntake;
@@ -42,10 +43,10 @@ public class ShootAuto extends InstantCommand {
   public void initialize() {
 
     if (type.equals("shoot" )) {
-      shoot.setShooterPower(-.80); 
-      Timer.delay(.5);
-      pIntake.setRollerPower(-.8);
-      pfeeder.setShooterFeedPower(1);
+      shoot.setShooterPower(Constants.ShooterConstants.SHOOT_SPEED); 
+      Timer.delay(1);
+      pIntake.setRollerPower(Constants.IntakeConstants.OUT_SPEED);
+      pfeeder.setShooterFeedPower(Constants.FeederConstants.ADJUST_NOTE_SPEED);
       try {
         TimeUnit.SECONDS.sleep(1);
       } catch (InterruptedException e) {
