@@ -140,7 +140,7 @@ public class Drivetrain extends SubsystemBase {
 
         for(SwerveModule mod : swerveMods){
             mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
-}        
+        }        
 }
 
   public void setModuleStates(SwerveModuleState[] desiredStates, boolean isOpenLoop) {
@@ -154,7 +154,6 @@ public class Drivetrain extends SubsystemBase {
   public void setModuleStates(SwerveModuleState[] desiredStates) {
     setModuleStates(desiredStates, true);
   }
-  
 
   public void zeroGyro() {
     gyro.setYaw(0.0);
@@ -222,17 +221,6 @@ public class Drivetrain extends SubsystemBase {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
   public class SwerveModule {
     // This might go in its own class, but am leaving it here for now
 
@@ -252,7 +240,6 @@ public class Drivetrain extends SubsystemBase {
     private SparkPIDController angleController;
 
     private SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.DrivetrainConstants.DRIVE_KS, Constants.DrivetrainConstants.DRIVE_KV, Constants.DrivetrainConstants.DRIVE_KA);
-
 
     public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants) {
       this.moduleNumber = moduleNumber;
@@ -320,8 +307,6 @@ public class Drivetrain extends SubsystemBase {
       double absolutePosition = getCancoder().getDegrees() - angleOffset.getDegrees();
       angleMotor.getEncoder().setPosition(absolutePosition);
     }
-
-
 
     public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
       desiredState = OnboardModuleState.optimize(desiredState, getState().angle);
