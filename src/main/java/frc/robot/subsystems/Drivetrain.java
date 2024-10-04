@@ -352,7 +352,7 @@ public class Drivetrain extends SubsystemBase {
     }    
 
     public Rotation2d getAngle() {
-      return Rotation2d.fromDegrees(integratedAngleEncoder.getPosition());
+      return Rotation2d.fromDegrees(integratedAngleEncoder.getPosition()) /* % 360 */;
     }
 
     public Rotation2d getCancoder() {
